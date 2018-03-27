@@ -1,7 +1,7 @@
 # Serverless-AWS-Slack-Bot
 
 ## Overview
-This project came from my wanting to learn the [serverless](https://www.serverless.com)serverless toolkit and AWS Lambda & CloudFormation technologies.
+This project came from my wanting to learn the [serverless](https://www.serverless.com)toolkit and AWS Lambda & CloudFormation technologies.
 
 Integrating with Slack, this is an easily-extensible python framework for controlling with AWS resources via Slack.
 
