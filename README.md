@@ -30,7 +30,7 @@ Bot commands currently available:
 
 ## Installing
 
-### Serverless
+### Deployment via serverless
 
 git clone the repo, edit serverless.yml to your specification && sls deploy
 
@@ -41,9 +41,11 @@ Everything is controlled via environment variables in the serverless.yml file.
 
 Most of the options will be self-explanatory and are commented, however you will want to pay attention to the following:
 
-AUTHTOKEN - must be set to your Slack Bot User OAuth Access Token
-KEYPAIR - name of the AWS keypair to use for your EC2 instances
-SG - name of the AWS security group to use
+**AUTHTOKEN** - must be set to your Slack Bot User OAuth Access Token
+
+**KEYPAIR** - name of the AWS keypair to use for your EC2 instances
+
+**SG** - name of the AWS security group to use
 
 
 
