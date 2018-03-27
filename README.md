@@ -35,6 +35,11 @@ You can easily add extra commands to the eventProc function inside handler.py
 
 git clone the repo, edit serverless.yml to your specification && sls deploy
 
+### Slack API
+
+After deploying via serverless you will need to give the Slack events subscription API the slackEvent URL. It will look something like this:
+`https://4dbi5xxxx2.execute-api.us-east-1.amazonaws.com/dev/slackEvent`
+
 
 ### Configuration
 
