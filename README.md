@@ -3,9 +3,9 @@
 ## Overview
 This project came from my wanting to learn the [serverless](https://www.serverless.com) toolkit and AWS Lambda & CloudFormation technologies.
 
-Integrating with Slack, this is an easily-extensible python framework for controlling with AWS resources via Slack.
+Integrating with Slack, this is an easily-extensible python framework for controlling with AWS resources via Slack. Currently it allows slack users to provision EC2 instances. 
 
-The entire stack is serverless and stateless. Use of SNS + lambda functions to dispatch long-running tasks means it should scale very well!
+The entire stack is serverless and stateless. Use of SNS + lambda functions to dispatch long-running tasks means it should scale very well.
 
 &nbsp;
 
@@ -17,7 +17,7 @@ The entire stack is serverless and stateless. Use of SNS + lambda functions to d
 ## Screenshot
 ![Screenshot](https://raw.githubusercontent.com/richstokes/Serverless-AWS-Slack-Bot/master/screenshot.png)
 
-## Commands
+## Bot Commands
 Bot commands currently available:
 
 * **@BotName ec2 create**
@@ -26,6 +26,7 @@ Bot commands currently available:
 * **@BotName get budget**
 * **@BotName toss coin**
 
+You can easily add extra commands to the eventProc function inside handler.py
 
 
 ## Installing
@@ -45,7 +46,7 @@ Most of the options will be self-explanatory and are commented, however you will
 
 **KEYPAIR** - name of the AWS keypair to use for your EC2 instances
 
-**SG** - name of the AWS security group to use
+**SG** - name of the AWS security group to use for your EC2 instances
 
 
 
