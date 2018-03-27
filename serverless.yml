@@ -1,0 +1,64 @@
+# Welcome to aws-slack-bot, created with Serverless!
+# sls plugin install -n serverless-python-requirements
+
+service: aws-slack-bot
+
+plugins:
+  - serverless-python-requirements
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: python3.6
+  memorySize: 128 # optional, in MB, default is 1024
+  timeout: 60
+  stage: dev
+  environment:
+    AUTHTOKEN: "xoxb-1234567899876546543214545454545454545"                                     # Slack Bot User OAuth Access Token
+    EC2QUOTA: 3                                                                                 # Max Number of instances allowed per user
+    AMI: "ami-428aa838"                                                                         # The AMI ID of the image you wish to use
+    EC2TYPE: "t2.micro"                                                                         # EC2 Instance type to use
+    SG: "basicSG"                                                                               # Name of the security group you wish the instance to be part of
+    KEYPAIR: "slack-vms"                                                                        # SSH Key Pair for VMs created on slack
+    BUDGETNAME: "Monthly AWS Personal"                                                          # Name of the AWS budget to use with the getBudget feature
+    SNSARN: { "Fn::Join" : ["", ["arn:aws:sns:${self:custom.region}:", { "Ref" : "AWS::AccountId" }, ":${self:custom.alertDispatchTopic}" ] ]  }
+    ACCID:  { "Fn::Join" : ["", [{ "Ref" : "AWS::AccountId" }, "" ]] }
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ec2:*"
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "sns:Publish"
+      Resource: { "Fn::Join" : ["", ["arn:aws:sns:${self:custom.region}:", { "Ref" : "AWS::AccountId" }, ":${self:custom.alertDispatchTopic}" ] ]  }
+    - Effect: "Allow"
+      Action:
+        - "budgets:ViewBudget"
+      Resource: "*"
+
+
+custom:
+  alertDispatchTopic: "${self:service}-alert-dispatch-${self:custom.stage}"
+  stage: "${opt:stage, self:provider.stage}"
+  region: ${opt:region, self:provider.region}
+
+functions:
+  pingSlack:
+    handler: handler.pingSlack
+    events:
+      - http:
+          path: pingSlack
+          method: get
+
+  slackEvent: # This will be the URL we give for the Slack Event Subscriptions URL
+    handler: handler.slackEvent
+    events:
+      - http:
+          path: slackEvent    
+          method: post
+
+  dispatcher:
+    handler: dispatcher.dispatch
+    events:
+      - sns: ${self:custom.alertDispatchTopic}
