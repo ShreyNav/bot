@@ -11,7 +11,12 @@ The entire stack is serverless and stateless. Use of SNS + lambda functions to d
 
 ![Diagram](https://raw.githubusercontent.com/richstokes/Serverless-AWS-Slack-Bot/master/diagram.png)
 
+&nbsp;
+
+
 ## Screenshot
+![Screenshot](https://raw.githubusercontent.com/richstokes/Serverless-AWS-Slack-Bot/master/screenshot.png)
+
 
 ## Installing
 
