@@ -37,7 +37,8 @@ git clone the repo, edit serverless.yml to your specification && sls deploy
 
 ### Slack API
 
-After deploying via serverless you will need to give the Slack events subscription API the slackEvent URL. It will look something like this:
+After deploying via serverless you will need to give your Slack Apps' Event Subscriptions settings page the slackEvent URL. It will look something like this:
+
 `https://4dbi5xxxx2.execute-api.us-east-1.amazonaws.com/dev/slackEvent`
 
 
@@ -47,7 +48,7 @@ Everything is controlled via environment variables in the serverless.yml file.
 
 Most of the options will be self-explanatory and are commented, however you will want to pay attention to the following:
 
-**AUTHTOKEN** - must be set to your Slack Bot User OAuth Access Token
+**AUTHTOKEN** - must be set to your Slack Bot/App OAuth Access Token
 
 **KEYPAIR** - name of the AWS keypair to use for your EC2 instances
 
